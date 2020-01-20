@@ -6,36 +6,37 @@ using System.Threading.Tasks;
 
 namespace mars
 {
-    class Program
+   public class Program
     {
-        static void Main(string[] args)
+       public static void Main(string[] args)
         {
             var startposition = Console.ReadLine().Trim().Split(' ').ToList();
-            var moveval= Console.ReadLine().Trim().ToList();
+            var moveval = Console.ReadLine().Trim().ToList();
             int x = Convert.ToInt32(startposition[0]);
             int y = Convert.ToInt32(startposition[1]);
             string pos = startposition[2].ToString();
-        
-          
+
+
             foreach (var item in moveval)
             {
                 if (item.ToString() == "L")
                 {
-                    Left(pos);
+                  pos = Left(pos);
                 }
                 else if (item.ToString() == "M")
                 {
-                  //if()
+                    //if()
                 }
                 else if (item.ToString() == "R")
                 {
-                    Right(pos);
+                    pos = Right(pos);
                 }
             }
 
+            Console.WriteLine("x:{0} ,y:{1},pos:{2}", x, y, pos);
         }
 
-        private static void Right(string pos)
+        public static string Right(string pos)
         {
             if (pos == "N")
             {
@@ -57,15 +58,16 @@ namespace mars
             {
                 Console.WriteLine("Girilen veri standarda uygun değildir.");
             }
+            return pos;
         }
 
-        private static void Left(string pos)
+        public static string Left(string pos)
         {
             if (pos == "N")
             {
                 pos = "W";
             }
-            else if(pos=="W")
+            else if (pos == "W")
             {
                 pos = "S";
             }
@@ -81,6 +83,8 @@ namespace mars
             {
                 Console.WriteLine("Girilen veri standarda uygun değildir.");
             }
+
+            return pos;
         }
     }
 }
