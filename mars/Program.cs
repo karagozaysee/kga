@@ -13,16 +13,18 @@ namespace Mars
 
             try
             {
-                var startposition = Console.ReadLine().Trim().Split(' ').ToList();
-                var moveval = Console.ReadLine().Trim().ToList();
-                int x = Convert.ToInt32(startposition[0]);
-                int y = Convert.ToInt32(startposition[1]);
-                DirectionEnums position = (DirectionEnums)Enum.Parse(typeof(DirectionEnums), startposition[2]);
-                List<int> sonuc = new List<int>();
-                sonuc.Add(x);
-                sonuc.Add(y);
+                var size= Console.ReadLine().Trim().Split(' ').ToList();
 
-                foreach (var item in moveval)
+                var startPosition = Console.ReadLine().Trim().Split(' ').ToList();
+                var moveVal = Console.ReadLine().Trim().ToList();
+                int x = Convert.ToInt32(startPosition[0]);
+                int y = Convert.ToInt32(startPosition[1]);
+                DirectionEnums position = (DirectionEnums)Enum.Parse(typeof(DirectionEnums), startPosition[2]);
+                List<int> result = new List<int>();
+                result.Add(x);
+                result.Add(y);
+
+                foreach (var item in moveVal)
                 {
 
                     if ((InputEnum)Enum.Parse(typeof(InputEnum), item.ToString()) == InputEnum.L)
@@ -31,7 +33,7 @@ namespace Mars
                     }
                     else if ((InputEnum)Enum.Parse(typeof(InputEnum), item.ToString()) == InputEnum.M)
                     {
-                        sonuc = Calculation.Move(position, sonuc[0], sonuc[1]);
+                        result = Calculation.Move(position, result[0], result[1]);
                     }
                     else if ((InputEnum)Enum.Parse(typeof(InputEnum), item.ToString()) == InputEnum.R)
                     {
@@ -39,11 +41,12 @@ namespace Mars
                     }
            
                 }
-                Console.WriteLine("x:{0} ,y:{1},pos:{2}", sonuc[0], sonuc[1], position);
+                Console.WriteLine("x:{0} ,y:{1},pos:{2}", result[0], result[1], position);
                 Console.Read();
             }
-            catch
+            catch(Exception ex)
             {
+                //TODO : exception yazılımcıya ilet
                 Console.WriteLine("Tanımsız bir giriş yapıldı lütfen kontrol ediniz.");
                 Console.Read();
             }
